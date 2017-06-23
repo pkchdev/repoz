@@ -1,8 +1,8 @@
 # Eclipse
--.classpath
--.project
--.settings/
+.classpath
+.project
+.settings/
 -  
--# Maven
--log/
--target/ 
+# Maven
+log/
+target/ 
