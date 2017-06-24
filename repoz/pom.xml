@@ -21,6 +21,7 @@
     </parent>
     
     <dependencies>
+    
     	<!-- Web starter -->
     	<dependency>
         	<groupId>org.springframework.boot</groupId>
@@ -35,10 +36,22 @@
     	
     	<!-- Fast restart in develop mode and auto disable when fully packaged -->
     	<!-- Warning : disable cache option -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-devtools</artifactId>
+    	</dependency>
+		
+		<!-- Specific server -->
     	<dependency>
     		<groupId>org.apache.tomcat.embed</groupId>
     		<artifactId>tomcat-embed-jasper</artifactId>
     		<scope>provided</scope>
+    	</dependency>
+
+    	<!-- WebJar locator to use webjar with fun ;) -->
+    	<dependency>
+    		<groupId>org.webjars</groupId>
+    		<artifactId>webjars-locator</artifactId>
     	</dependency>
 
 		<!-- Webjar Bootstrap -->
@@ -47,10 +60,13 @@
     		<artifactId>bootstrap</artifactId>
     		<version>3.3.7</version>
     	</dependency>
+    	
+    	<!-- Because it's boring to write getter and setter -->
     	<dependency>
-    		<groupId>org.webjars</groupId>
-    		<artifactId>webjars-locator</artifactId>
+    		<groupId>org.projectlombok</groupId>
+    		<artifactId>lombok</artifactId>
     	</dependency>
+
     </dependencies>
 
 </project>
