@@ -61,6 +61,13 @@
     		<version>3.3.7</version>
     	</dependency>
     	
+		<!--  WebJar JQuery -->    		
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery</artifactId>
+		    <version>3.2.1</version>
+		</dependency>
+    	
     	<!-- Because it's boring to write getter and setter -->
     	<dependency>
     		<groupId>org.projectlombok</groupId>
