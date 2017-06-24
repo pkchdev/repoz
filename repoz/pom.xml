@@ -37,10 +37,6 @@
     	</dependency>
     	
     	<!-- Log4j2 starter -->
-    	<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-starter-log4j2</artifactId>
-    	</dependency>
     	
     	<!-- Test starter -->
     	<dependency>
@@ -50,11 +46,12 @@
     	
     	<!-- Fast restart in develop mode and auto disable when fully packaged -->
     	<!-- Warning : disable cache option -->
+
     	<dependency>
-    		<groupId>org.springframework.boot</groupId>
-    		<artifactId>spring-boot-devtools</artifactId>
+    		<groupId>org.apache.tomcat.embed</groupId>
+    		<artifactId>tomcat-embed-jasper</artifactId>
+    		<scope>provided</scope>
     	</dependency>
-    	
     </dependencies>
 
 </project>
