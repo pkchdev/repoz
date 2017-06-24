@@ -6,16 +6,7 @@
   	<groupId>com.pkch</groupId>
   	<artifactId>repoz</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
-  	
-	<build>
-		<plugins>
-	        <plugin>
-	            <groupId>org.springframework.boot</groupId>
-	            <artifactId>spring-boot-maven-plugin</artifactId>
-	        </plugin>
-    	</plugins>
-	</build>
-  	
+  
   	<!-- Maven properties to use Java 1.8 -->
   	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -36,8 +27,6 @@
         	<artifactId>spring-boot-starter-web</artifactId>
     	</dependency>
     	
-    	<!-- Log4j2 starter -->
-    	
     	<!-- Test starter -->
     	<dependency>
     		<groupId>org.springframework.boot</groupId>
@@ -46,11 +35,21 @@
     	
     	<!-- Fast restart in develop mode and auto disable when fully packaged -->
     	<!-- Warning : disable cache option -->
-
     	<dependency>
     		<groupId>org.apache.tomcat.embed</groupId>
     		<artifactId>tomcat-embed-jasper</artifactId>
     		<scope>provided</scope>
+    	</dependency>
+
+		<!-- Webjar Bootstrap -->
+    	<dependency>
+    		<groupId>org.webjars</groupId>
+    		<artifactId>bootstrap</artifactId>
+    		<version>3.3.7</version>
+    	</dependency>
+    	<dependency>
+    		<groupId>org.webjars</groupId>
+    		<artifactId>webjars-locator</artifactId>
     	</dependency>
     </dependencies>
 
