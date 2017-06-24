@@ -7,6 +7,15 @@
   	<artifactId>repoz</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
   	
+	<build>
+		<plugins>
+	        <plugin>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-maven-plugin</artifactId>
+	        </plugin>
+    	</plugins>
+	</build>
+  	
   	<!-- Maven properties to use Java 1.8 -->
   	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -21,12 +30,31 @@
     </parent>
     
     <dependencies>
+    	<!-- Web starter -->
     	<dependency>
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-web</artifactId>
     	</dependency>
+    	
+    	<!-- Log4j2 starter -->
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-log4j2</artifactId>
+    	</dependency>
+    	
+    	<!-- Test starter -->
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-test</artifactId>
+    	</dependency>
+    	
+    	<!-- Fast restart in develop mode and auto disable when fully packaged -->
+    	<!-- Warning : disable cache option -->
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-devtools</artifactId>
+    	</dependency>
+    	
     </dependencies>
-
-	<!-- Others -->
 
 </project>
