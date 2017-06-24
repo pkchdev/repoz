@@ -5,8 +5,7 @@
 		<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
 	</head>
 	<body>
-		<h2>Hello World Repoz ;)</h2>
-		<button type="button" class="btn btn-primary">Test</button>
+		<h2>Hello ${name} Repoz ;)</h2>
 		
 	</body>
 </html>
