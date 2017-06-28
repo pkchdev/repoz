@@ -1,26 +1,22 @@
 package repoz.service;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import repoz.dao.PersonDao;
+import repoz.dao.IPersonDao;
 import repoz.model.Person;
 
 @Service
+@Transactional
 public class PersonService implements IPersonService {
 
-	private PersonDao personDao;
-
-	public void setPersonDAO(PersonDao personDao) {
-		this.personDao = personDao;
-	}
+	@Autowired
+	private IPersonDao dao;
 
 	@Override
-	@Transactional
 	public void addPerson(Person p) {
-		this.personDao.addPerson(p);
+		dao.addPerson(p);
 	}
 
 }
