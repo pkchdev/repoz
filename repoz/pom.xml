@@ -39,6 +39,12 @@
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-data-jpa</artifactId>
     	</dependency>
+
+		<!--  Security starter -->
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-security</artifactId>
+    	</dependency>
     	
     	<!-- Fast restart in develop mode and auto disable when fully packaged -->
     	<!-- Warning : disable cache option -->
@@ -85,7 +91,11 @@
     		<groupId>mysql</groupId>
     		<artifactId>mysql-connector-java</artifactId>
     	</dependency>
-    	
+
+    	<dependency>
+    		<groupId>javax.servlet</groupId>
+    		<artifactId>jstl</artifactId>
+    	</dependency>
     </dependencies>
 
 </project>
