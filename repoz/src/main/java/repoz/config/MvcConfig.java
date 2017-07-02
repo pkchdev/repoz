@@ -10,25 +10,22 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
-    
+
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-	    registry.addViewController("/").setViewName("index");
-	    registry.addViewController("/index").setViewName("index");
-	    registry.addViewController("/login").setViewName("login");
+		registry.addViewController("/").setViewName("index");
+		registry.addViewController("/index").setViewName("index");
+		registry.addViewController("/login").setViewName("login");
 
 	}
-	
+
 	@Bean
-    public ViewResolver getViewResolver() {
+	public ViewResolver getViewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/jsp/");
-        resolver.setSuffix(".jsp");
-        return resolver;
-    }
-	
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		resolver.setPrefix("/WEB-INF/jsp/");
+		resolver.setSuffix(".jsp");
+		return resolver;
 	}
+
+	
 }

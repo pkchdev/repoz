@@ -35,26 +35,26 @@ public class HibernateConfig {
 	@Bean
 	public DataSource dataSourceProperties() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-	    dataSource.setDriverClassName(environment.getRequiredProperty("app.datasource.driver"));
-	    dataSource.setUrl(environment.getRequiredProperty("app.datasource.url"));
-	    dataSource.setUsername(environment.getRequiredProperty("app.datasource.username"));
-	    dataSource.setPassword(environment.getRequiredProperty("app.datasource.password"));
-	    return dataSource;
+		dataSource.setDriverClassName(environment.getRequiredProperty("app.datasource.driver"));
+		dataSource.setUrl(environment.getRequiredProperty("app.datasource.url"));
+		dataSource.setUsername(environment.getRequiredProperty("app.datasource.username"));
+		dataSource.setPassword(environment.getRequiredProperty("app.datasource.password"));
+		return dataSource;
 	}
-	
+
 	private Properties hibernateProperties() {
-        Properties properties = new Properties();
-        properties.put("hibernate.dialect", environment.getRequiredProperty("app.hibernate.dialect"));
-        properties.put("hibernate.show_sql", environment.getRequiredProperty("app.hibernate.show_sql"));
-        properties.put("hibernate.format_sql", environment.getRequiredProperty("app.hibernate.format_sql"));
-        return properties;        
-    }
-	
+		Properties properties = new Properties();
+		properties.put("hibernate.dialect", environment.getRequiredProperty("app.hibernate.dialect"));
+		properties.put("hibernate.show_sql", environment.getRequiredProperty("app.hibernate.show_sql"));
+		properties.put("hibernate.format_sql", environment.getRequiredProperty("app.hibernate.format_sql"));
+		return properties;
+	}
+
 	@Bean
-    @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory session) {
-       HibernateTransactionManager manager = new HibernateTransactionManager();
-       manager.setSessionFactory(session);
-       return manager;
-    }
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory session) {
+		HibernateTransactionManager manager = new HibernateTransactionManager();
+		manager.setSessionFactory(session);
+		return manager;
+	}
 }
