@@ -2,6 +2,7 @@ package controller;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,9 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import repoz.Application;
 
@@ -54,7 +53,7 @@ public class MainControllerTest {
 		MediaType contentTypeForm = new MediaType(MediaType.APPLICATION_FORM_URLENCODED.getType(), 
 				MediaType.APPLICATION_FORM_URLENCODED.getSubtype(),Charset.forName("utf-8"));
 		
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/login").with(csrf())
+		/*MvcResult result = */mockMvc.perform(MockMvcRequestBuilders.post("/login").with(csrf())
 				.session(new MockHttpSession())
 				.contentType(contentTypeForm)
 				.param("username", "pkch")
