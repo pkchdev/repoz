@@ -1,5 +1,6 @@
 package repoz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,14 +21,17 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Getter
 	@Setter
-	private int id;
+	@Column(name = "use_id")
+	private Long id;
 
 	@Getter
 	@Setter
+	@Column(name = "use_username")
 	private String username;
 
 	@Getter
 	@Setter
+	@Column(name = "use_password")
 	private String password;
 
 	@Transient
@@ -36,7 +40,7 @@ public class User {
 	private String passwordConfirm;
 
 	@ManyToOne
-	@JoinColumn(name="id_role")
+	@JoinColumn(name = "use_rol_id")
 	@Getter
 	@Setter
 	private Role role;

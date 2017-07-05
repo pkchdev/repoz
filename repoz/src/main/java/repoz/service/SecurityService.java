@@ -1,7 +1,7 @@
-package repoz.service.impl;
+package repoz.service;
 
 public interface SecurityService {
 
 	public String findLoggedInUsername(String username);
-	public void autologin(String username, String password);
+	public void autoLogin(String username, String password);
 }

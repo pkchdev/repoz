@@ -1,5 +1,6 @@
 package repoz.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,12 +16,14 @@ public class Role {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter @Setter
-	private int id;
+	@Column(name = "rol_id")
+	@Getter
+	@Setter
+	private Long id;
 
+	@Column(name = "rol_name")
 	@Getter
 	@Setter
 	private String name;
-	
-	
+
 }

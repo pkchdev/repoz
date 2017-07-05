@@ -3,13 +3,13 @@ package repoz.repository;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.Table;
-
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public abstract class AbstractRepository<T> {
@@ -33,6 +33,7 @@ public abstract class AbstractRepository<T> {
 		getSession().update(entity);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> readAll(Class<T> entity) {
 		return getSession().createCriteria(entity).list();
 	}
@@ -41,15 +42,15 @@ public abstract class AbstractRepository<T> {
 		return getSession().get(entityType, id);
 	}
 
-	public T readQuery(Class<T> entityType, String column, String value) {
-		String tableName = entityType.getAnnotation(Table.class).name();
-		if (tableName != null) {
-			System.out.println("from " + "User user" + " where " + column + " = :" + value);
-			Query query = getSession().createQuery("from " + "User user" + " where " + column +  " = :" + column);
-			query.setParameter(column, value);
-			return (T) query.uniqueResult();
-		}
-		
-		return null;
+	@SuppressWarnings("unchecked")
+	public T readQueryFromValue(Class<T> entityType, String column, String value) {
+		Criteria criteria = getSession().createCriteria(entityType);
+		return (T) criteria.add(Restrictions.eq(column, value)).uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> readAllQueryFromValue(Class<T> entityType, String column, String value) {
+		Criteria criteria = getSession().createCriteria(entityType);
+		return (List<T>) criteria.add(Restrictions.eq(column, value)).list();
 	}
 }
