@@ -46,6 +46,12 @@
     		<artifactId>spring-boot-starter-security</artifactId>
     	</dependency>
     	
+    	<!--  Security test -->
+    	<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-test</artifactId>
+    	</dependency>
+    	
     	<!-- Fast restart in develop mode and auto disable when fully packaged -->
     	<!-- Warning : disable cache option -->
 		<dependency>
@@ -96,6 +102,7 @@
     		<groupId>javax.servlet</groupId>
     		<artifactId>jstl</artifactId>
     	</dependency>
+    	
     </dependencies>
 
 </project>
