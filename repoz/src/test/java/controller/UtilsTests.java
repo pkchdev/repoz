@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class UtilsTests {
@@ -39,16 +40,15 @@ public abstract class UtilsTests {
 		return (MockHttpSession) result.getRequest().getSession();
 	}
 
-	protected void logout(MockMvc mockMvc) throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.post("/logout"));
-		
+//	protected void logout(MockMvc mockMvc) throws Exception {
+//		mockMvc.perform(MockMvcRequestBuilders.post("/logout"));
+//		
+//	}
+	
+	protected String toJson(Object obj) throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writeValueAsString(obj);
 	}
-
-	 protected static byte[] convertObjectToJsonBytes(Object object) throws IOException {
-	        ObjectMapper mapper = new ObjectMapper();
-	        //mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-	        return mapper.writeValueAsBytes(object);
-	    }
 	 
 	    public static String createStringWithLength(int length) {
 	        StringBuilder builder = new StringBuilder();

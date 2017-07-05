@@ -34,7 +34,7 @@ public class MainController {
 		model.addAttribute("user", new User());
 		return "registration";
 	}
-
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String registration(User user, BindingResult bindingResult, Model model) {
 		userValidator.validate(user, bindingResult);
