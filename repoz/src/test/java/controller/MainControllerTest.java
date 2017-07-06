@@ -8,8 +8,6 @@ import static org.springframework.security.test.web.servlet.response.SecurityMoc
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-
 
 import javax.servlet.Filter;
 
@@ -19,11 +17,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -35,38 +30,34 @@ import repoz.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
-//@AutoConfigureMockMvc
-@WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class MainControllerTest extends UtilsTests {
+@WebAppConfiguration
+public class MainControllerTest {
 
-	//@Autowired
+	private MockMvc mockMvc; 
 	
-	private MockMvc mockMvc;
-	private MockHttpSession session;
-
 	@Autowired
-	WebApplicationContext wac;
+	WebApplicationContext webContext;
 	
 	@Autowired
 	private Filter springSecurityFilterChain;
 	
 	@Before
 	public void setup() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).addFilter(springSecurityFilterChain).build(); 
+		mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).addFilter(springSecurityFilterChain).build(); 
 	}
 	 
 	 
 	@Test
 	public void getSlash() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/").contentType(contentType)).andExpect(status().is3xxRedirection())
+		mockMvc.perform(MockMvcRequestBuilders.get("/").contentType(UtilsTest.contentType)).andExpect(status().is3xxRedirection())
 			.andExpect(unauthenticated())
 			.andExpect(redirectedUrlPattern("http*://localhost/login"));
 	}
 
 	@Test
 	public void getSlashIndex() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/index").contentType(contentType))
+		mockMvc.perform(MockMvcRequestBuilders.get("/index").contentType(UtilsTest.contentType))
 			.andExpect(unauthenticated())
 			.andExpect(status().is3xxRedirection())
 			.andExpect(redirectedUrlPattern("http*://localhost/login"))
@@ -99,34 +90,43 @@ public class MainControllerTest extends UtilsTests {
 	
 	@Test
 	public void getLogin() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(contentType))
+		mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(UtilsTest.contentType))
 			.andExpect(unauthenticated())
 			.andExpect(status().isOk());
 	}
 	
-	
-	
 	@Test
 	public void registrationUser() throws Exception {
-		// session = performLogin(mockMvc, "pkch", "pkch");
-		
 		User user = new User();
-		user.setUsername("toto");
-		user.setPassword("test");
-		user.setPasswordConfirm("test");
+		String username = UtilsTest.createStringWithLength(10, true, true, false);
+		String password = UtilsTest.createStringWithLength(20, true, true, true);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setPasswordConfirm(password);
 		
-		System.out.println(toJson(user));
 		mockMvc.perform(MockMvcRequestBuilders.post("/registration")
-				.contentType(contentType)
+				.contentType(UtilsTest.contentType)
 				//.session(session)
 				.with(csrf())
-				.content(toJson(user)))
-		.andDo(print())
+				.content(UtilsTest.toJson(user)))
 		.andExpect(status().is3xxRedirection())
-		.andExpect(redirectedUrl("/"))
+		.andExpect(redirectedUrl("/index"))
 		.andReturn();
-		
-		//logout(mockMvc);
+	}
+	
+	@Test
+	public void memo() {
+//		private MockHttpSession session;
+//		mockMvc.perform(MockMvcRequestBuilders.post("/registration")
+//				.contentType(UtilsTest.contentType)
+//				//.session(session)
+//				.with(csrf())
+//				.content(UtilsTest.toJson(user)))
+//		.andExpect(status().is3xxRedirection())
+//		.andExpect(redirectedUrl("/index"))
+//		.andReturn();
+//		session = performLogin(mockMvc, "pkch", "pkch");
+//		logout(mockMvc);
 	}
 
 }

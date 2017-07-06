@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.nio.charset.Charset;
+import java.util.Random;
 
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
@@ -18,15 +19,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public abstract class UtilsTests {
 
-	protected final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+public class UtilsTest {
+
+	public static final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
 			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf-8"));
 
-	protected final MediaType contentTypeForm = new MediaType(MediaType.APPLICATION_FORM_URLENCODED.getType(),
+	public static final MediaType contentTypeForm = new MediaType(MediaType.APPLICATION_FORM_URLENCODED.getType(),
 			MediaType.APPLICATION_FORM_URLENCODED.getSubtype(), Charset.forName("utf-8"));
 
-	protected MockHttpSession performLogin(MockMvc mockMvc, String username, String password) throws Exception {
+	public static MockHttpSession performLogin(MockMvc mockMvc, String username, String password) throws Exception {
 		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/login").with(csrf())
 				.session(new MockHttpSession())
 				.contentType(contentTypeForm)
@@ -41,33 +43,35 @@ public abstract class UtilsTests {
 		return (MockHttpSession) result.getRequest().getSession();
 	}
 
-	protected void performLogout(MockMvc mockMvc, MockHttpSession session) throws Exception {
+	public static void performLogout(MockMvc mockMvc, MockHttpSession session) throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/logout").session(session)).
 			andExpect(status().is3xxRedirection())
 			.andExpect(unauthenticated());
-		
 	}
 	
-	protected byte[] toJsonBytes(Object obj) throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		return mapper.writeValueAsBytes(obj);
-	}
-	
-	protected String toJson(Object obj) throws JsonProcessingException {
+	public static String toJson(Object obj) throws JsonProcessingException {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 		return mapper.writeValueAsString(obj);
 	}
 	 
-	    public static String createStringWithLength(int length) {
-	        StringBuilder builder = new StringBuilder();
-	 
-	        for (int index = 0; index < length; index++) {
-	            builder.append("a");
-	        }
-	 
-	        return builder.toString();
-	    }
-
+	public static String createStringWithLength(int length, boolean withMaj, boolean withMin, boolean withNum) {
+		StringBuilder text = new StringBuilder(length);
+		String min = "abcdefghijklmnopqrstuvwxyz";
+		String maj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String num = "0123456789";
+		String chars = "";
+		
+		if(withMaj || withMin || withNum ) {
+			if(withMaj) chars += maj; 
+			if(withMin) chars += min;
+			if(withNum) chars += num;
+		
+			for(int i = 0; i < length; i++) {
+				text.append(chars.charAt(new Random().nextInt(chars.length())));
+			}
+		}
+		
+		return text.toString();
+	}
 }

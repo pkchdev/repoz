@@ -38,7 +38,6 @@ public class MainController {
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String registration(@RequestBody User user, BindingResult bindingResult, Model model) {
-		
 		userValidator.validate(user, bindingResult);
 		if (bindingResult.hasErrors()) {
 			return "registration";
@@ -59,5 +58,4 @@ public class MainController {
 
 		return "login";
 	}
-
 }
