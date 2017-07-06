@@ -24,12 +24,13 @@ public class MainController {
 
 	@Autowired
 	private UserValidator userValidator;
-
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model) {
 		return "index";
 	}
-
+	
+	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {
 		model.addAttribute("user", new User());

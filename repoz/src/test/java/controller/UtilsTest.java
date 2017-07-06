@@ -44,9 +44,10 @@ public class UtilsTest {
 	}
 
 	public static void performLogout(MockMvc mockMvc, MockHttpSession session) throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/logout").session(session)).
-			andExpect(status().is3xxRedirection())
-			.andExpect(unauthenticated());
+		mockMvc.perform(MockMvcRequestBuilders.get("/logout").session(session))
+			.andExpect(status().is3xxRedirection())
+			.andExpect(unauthenticated())
+			.andReturn();
 	}
 	
 	public static String toJson(Object obj) throws JsonProcessingException {
