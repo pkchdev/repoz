@@ -47,7 +47,6 @@ public class MainControllerTest {
 		mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).addFilter(springSecurityFilterChain).build(); 
 	}
 	 
-	 
 	@Test
 	public void getSlash() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/").contentType(UtilsTest.contentType)).andExpect(status().is3xxRedirection())
