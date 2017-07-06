@@ -8,32 +8,53 @@ import static org.springframework.security.test.web.servlet.response.SecurityMoc
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 
+
+import javax.servlet.Filter;
+
+import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import repoz.Application;
-import repoz.controller.MainController;
 import repoz.model.User;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
-@AutoConfigureMockMvc
+//@AutoConfigureMockMvc
+@WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MainControllerTest extends UtilsTests {
 
-	@Autowired
-	private MockMvc mockMvc;
-
-	 @InjectMocks
-	 private MainController customerController;
+	//@Autowired
 	
+	private MockMvc mockMvc;
+	private MockHttpSession session;
+
+	@Autowired
+	WebApplicationContext wac;
+	
+	@Autowired
+	private Filter springSecurityFilterChain;
+	
+	@Before
+	public void setup() throws Exception {
+		mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).addFilter(springSecurityFilterChain).build(); 
+	}
 	 
 	 
 	@Test
@@ -65,7 +86,6 @@ public class MainControllerTest extends UtilsTests {
 			.andExpect(status().is3xxRedirection())
 			.andExpect(redirectedUrl("/login?logout"))
 			.andReturn();
-		
 	}
 
 	@Test
@@ -88,19 +108,20 @@ public class MainControllerTest extends UtilsTests {
 	
 	@Test
 	public void registrationUser() throws Exception {
-		//MockHttpSession session = login(mockMvc, "pkch", "pkch");
+		// session = performLogin(mockMvc, "pkch", "pkch");
 		
 		User user = new User();
 		user.setUsername("toto");
 		user.setPassword("test");
 		user.setPasswordConfirm("test");
 		
-		
+		System.out.println(toJson(user));
 		mockMvc.perform(MockMvcRequestBuilders.post("/registration")
-				//.with(user("admin").password("pass").roles("USER","ADMIN")))
-				.contentType(contentTypeForm)
+				.contentType(contentType)
+				//.session(session)
 				.with(csrf())
-				.param("user",toJson(user)))
+				.content(toJson(user)))
+		.andDo(print())
 		.andExpect(status().is3xxRedirection())
 		.andExpect(redirectedUrl("/"))
 		.andReturn();
