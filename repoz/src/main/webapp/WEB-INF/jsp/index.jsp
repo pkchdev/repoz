@@ -14,6 +14,8 @@
            	<div><input type="submit" value="Sign Out"/></div>
            	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
        	</form>
+       	
+       	AAAAA = ${users}
 				
 		<script src="/webjars/jquery/jquery.min.js"></script>
 		<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>

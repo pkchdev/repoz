@@ -1,5 +1,7 @@
 package controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
@@ -13,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -22,32 +25,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class UtilsTest {
 
-	public static final MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
-			MediaType.APPLICATION_JSON.getSubtype(), Charset.forName("utf-8"));
-
 	public static final MediaType contentTypeForm = new MediaType(MediaType.APPLICATION_FORM_URLENCODED.getType(),
 			MediaType.APPLICATION_FORM_URLENCODED.getSubtype(), Charset.forName("utf-8"));
 
 	public static MockHttpSession performLogin(MockMvc mockMvc, String username, String password) throws Exception {
-		MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/login").with(csrf())
-				.session(new MockHttpSession())
-				.contentType(contentTypeForm)
-				.param("username", username)
-				.param("password", password)
-			)
-			.andExpect(status().is3xxRedirection())
-			.andExpect(redirectedUrl("/"))
-			.andExpect(authenticated().withUsername(username))
-			.andReturn();
-
-		return (MockHttpSession) result.getRequest().getSession();
+		ResultActions session = mockMvc.perform(formLogin().user(username).password(password));
+		return (MockHttpSession) session.andReturn().getRequest().getSession();
 	}
 
-	public static void performLogout(MockMvc mockMvc, MockHttpSession session) throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/logout").session(session))
-			.andExpect(status().is3xxRedirection())
-			.andExpect(unauthenticated())
-			.andReturn();
+	public static void performLogout(MockMvc mockMvc) throws Exception {
+		mockMvc.perform(logout()).andReturn();
 	}
 	
 	public static String toJson(Object obj) throws JsonProcessingException {

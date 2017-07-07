@@ -49,14 +49,14 @@ public class MainControllerTest {
 	 
 	@Test
 	public void getSlash() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/").contentType(UtilsTest.contentType)).andExpect(status().is3xxRedirection())
+		mockMvc.perform(MockMvcRequestBuilders.get("/").contentType(UtilsTest.contentTypeForm)).andExpect(status().is3xxRedirection())
 			.andExpect(unauthenticated())
 			.andExpect(redirectedUrlPattern("http*://localhost/login"));
 	}
 
 	@Test
 	public void getSlashIndex() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/index").contentType(UtilsTest.contentType))
+		mockMvc.perform(MockMvcRequestBuilders.get("/index").contentType(UtilsTest.contentTypeForm))
 			.andExpect(unauthenticated())
 			.andExpect(status().is3xxRedirection())
 			.andExpect(redirectedUrlPattern("http*://localhost/login"))
@@ -89,7 +89,7 @@ public class MainControllerTest {
 	
 	@Test
 	public void getLogin() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(UtilsTest.contentType))
+		mockMvc.perform(MockMvcRequestBuilders.get("/login").contentType(UtilsTest.contentTypeForm))
 			.andExpect(unauthenticated())
 			.andExpect(status().isOk());
 	}
@@ -104,7 +104,7 @@ public class MainControllerTest {
 		user.setPasswordConfirm(password);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/registration")
-				.contentType(UtilsTest.contentType)
+				.contentType(UtilsTest.contentTypeForm)
 				//.session(session)
 				.with(csrf())
 				.content(UtilsTest.toJson(user)))

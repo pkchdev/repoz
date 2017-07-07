@@ -31,6 +31,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import ch.qos.logback.classic.pattern.Util;
 import repoz.Application;
 import repoz.model.User;
 
@@ -57,8 +58,16 @@ public class UserControllerTest {
 	@Test
 	public void getUsers() throws Exception {
 		
-	session = (MockHttpSession) mockMvc.perform(formLogin().user("pkch").password("pkch")).andReturn().getRequest().getSession();
-
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+	
 		try {
 			mockMvc.perform(MockMvcRequestBuilders.get("/users")
 				.session(session)
@@ -70,7 +79,7 @@ public class UserControllerTest {
 					.andReturn();
 			
 		} finally {
-			mockMvc.perform(logout());
+			//UtilsTest.performLogout(mockMvc);
 		}
 		
 	}
