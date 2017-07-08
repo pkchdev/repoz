@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/* Generic */
+body {
+	background-image: url('/images/background.png');
+	background-size: cover;
+}
+
+/* Login & registration */
+#loginbox {
+	margin-top: 100px;
+}
+
+#loginbox .panel-body {
+	padding-bottom: 0px;
+}
+
+#loginbox .alert {
+	margin-bottom: 0px;
+}
+
+#loginbox .input-group {
+	margin-bottom: 25px;
+}

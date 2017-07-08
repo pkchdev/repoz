@@ -1,6 +1,9 @@
 package repoz.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +15,7 @@ import javax.persistence.Transient;
 
 import lombok.Getter;
 import lombok.Setter;
+import repoz.model.conv.LocalDateTimeConverter;
 
 @Entity
 @Table(name = "user")
@@ -38,7 +42,13 @@ public class User {
 	@Getter
 	@Setter
 	private String passwordConfirm;
-
+	
+	@Getter
+	@Setter
+	@Convert(converter=LocalDateTimeConverter.class)
+	@Column(name = "use_creation_date", insertable=false)
+	private LocalDateTime creationDate;
+	
 	@ManyToOne
 	@JoinColumn(name = "use_rol_id")
 	@Getter

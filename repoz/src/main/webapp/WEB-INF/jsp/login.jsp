@@ -1,95 +1,53 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Repoz login</title>
-<link rel='stylesheet' type="text/css" href='/css/style.css'>
+<title>Repoz Login</title>
+<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+<link rel='stylesheet' type="text/css" href='/css/repoz.css'>
 </head>
-<body>
+<body >
+	<div class="container" >
 
-	<div class="container">
+		<div id="loginbox" class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+			<div class="panel panel-default">
 
+				<div class="panel-heading">
+					<div class="panel-title text-center">Repoz</div>
+				</div>
 
-		<div id="login-box">
-			<div class="logo">
-				<img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg"
-					class="img img-responsive img-circle center-block" />
-				<h1 class="logo-caption">
-					<span class="tweak">L</span>ogin
-				</h1>
+				<div id="loginbox-panel" class="panel-body">
+					<form name="form" id="form" class="form-horizontal" action="/login" method="POST">
+						<div class="input-group">
+						  	<span class="input-group-addon">
+						  		<i class="glyphicon glyphicon-user"></i>
+						  	</span>
+							<input name="username" type="text" class="form-control" placeholder="Username" />
+						</div>
+						<div class="input-group">
+						  	<span class="input-group-addon">
+						  		<i class="glyphicon glyphicon-lock"></i>
+						  	</span>
+							<input name="password" type="password" class="form-control" placeholder="Password" />
+						</div>
+
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+						<button id="loginbox-button" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+						<a id="loginbox-button" class="btn btn-lg btn-warning btn-block" href="/registration" >Create an account</a>
+						
+						<c:if test = "${error != null}">
+							<div class="alert alert-danger" role="alert">${error}</div>
+						</c:if>
+						
+						<c:if test = "${message != null}">
+							<div class="alert alert-success" role="alert">${message}</div>
+						</c:if>
+					</form>
+				</div>
 			</div>
-			<!-- /.logo -->
-			 <form method="POST" action="/login" class="form-signin">
-			<h2 class="form-heading">Log in</h2>
-
-			<div class="form-group ${error != null ? 'has-error' : ''}">
-				<span>${message}</span> <input name="username" type="text"
-					class="form-control" placeholder="Username" /> <input
-					name="password" type="password" class="form-control"
-					placeholder="Password" /> <span>${error}</span> <input
-					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Log
-					In</button>
-				<h4 class="text-center">
-					<a href="/registration">Create an account</a>
-				</h4>
-			</div>
-
-		</form>
-			<!-- <div class="controls">
-				<input type="text" name="username" placeholder="Username"
-					class="form-control" /> <input type="text" name="username"
-					placeholder="Password" class="form-control" />
-				<button type="button" class="btn btn-default btn-block btn-custom">Login</button>
-			</div> -->
-			<!-- /.controls -->
 		</div>
-		<!-- /#login-box -->
-
-		<div id="particles-js"></div>
-		<!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>-->
-		<%-- <form method="POST" action="/login" class="form-signin">
-			<h2 class="form-heading">Log in</h2>
-
-			<div class="form-group ${error != null ? 'has-error' : ''}">
-				<span>${message}</span> <input name="username" type="text"
-					class="form-control" placeholder="Username" /> <input
-					name="password" type="password" class="form-control"
-					placeholder="Password" /> <span>${error}</span> <input
-					type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Log
-					In</button>
-				<h4 class="text-center">
-					<a href="/registration">Create an account</a>
-				</h4>
-			</div>
-
-		</form> --%>
-
 	</div>
 
-
-
-
-
-
-	<!--     	<c:if test="${param.error ne null}">
-        	<div>Invalid username and password.</div>
-     	</c:if>
-        <c:if test="${param.logout ne null}">
-        	<div>You have been logged out.</div>
-      	</c:if>
-		<form action="/login" method="post">
-          	<div><label> User Name : <input type="text" name="username"/> </label></div>
-          	<div><label> Password: <input type="password" name="password"/> </label></div>
-          	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-          	<div><input type="submit" value="Sign In"/></div>
-      	</form>
-      	-->
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-	<script src="/js/test.js"></script>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>

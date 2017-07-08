@@ -10,7 +10,7 @@ import repoz.model.User;
 import repoz.service.UserService;
 
 @Component
-public class UserValidator implements Validator {
+public class RegisterValidator implements Validator {
 
 	@Autowired
 	private UserService userService;
@@ -22,10 +22,10 @@ public class UserValidator implements Validator {
 
 	@Override
 	public void validate(Object target, Errors errors) {
+		
 		User user = (User) target;
 
 		// Username validation
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "required");
 		if (user.getUsername().length() < 2 || user.getUsername().length() > 32) {
 			errors.rejectValue("username", "user.username.size");
 		}
@@ -35,7 +35,6 @@ public class UserValidator implements Validator {
 		}
 
 		// Password validation
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required");
 		if (user.getPassword().length() < 2 || user.getPassword().length() > 32) {
 			errors.rejectValue("password", "user.password.size");
 		}

@@ -1,77 +1,29 @@
 package controller;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
-import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrlPattern;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import javax.servlet.Filter;
-
-import org.hibernate.tool.schema.extract.spi.PrimaryKeyInformation;
-import org.junit.Before;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
-import ch.qos.logback.classic.pattern.Util;
-import repoz.Application;
-import repoz.model.User;
+import misc.AbstractTest;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Application.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-@WebAppConfiguration
-public class UserControllerTest {
+public class UserControllerTest extends AbstractTest {
 
-	private MockMvc mockMvc; 
+	
 	private MockHttpSession session;
-	
-	@Autowired
-	WebApplicationContext webContext;
-	
-	@Autowired
-	private Filter springSecurityFilterChain;
-	
-	@Before
-	public void setup() throws Exception {
-		mockMvc = MockMvcBuilders.webAppContextSetup(this.webContext).addFilter(springSecurityFilterChain).build(); 
-	}
 	 
 	@Test
 	public void getUsers() throws Exception {
 		
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
-	session = UtilsTest.performLogin(mockMvc, "pkch", "pkch");
+		session = performLogin(mockMvc, "pkch", "pkch");
 	
 		try {
 			mockMvc.perform(MockMvcRequestBuilders.get("/users")
 				.session(session)
-				.contentType(UtilsTest.contentTypeForm))
+				.contentType(contentTypeFormUrlEncoded))
 					.andDo(print())
 					.andExpect(status().isOk())
 					.andExpect(authenticated())
@@ -79,7 +31,7 @@ public class UserControllerTest {
 					.andReturn();
 			
 		} finally {
-			//UtilsTest.performLogout(mockMvc);
+			performLogout(mockMvc);
 		}
 		
 	}

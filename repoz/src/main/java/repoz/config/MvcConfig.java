@@ -26,7 +26,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
-	
+		
 	/**
 	 * Enable internationalization with message reference
 	 * @return
