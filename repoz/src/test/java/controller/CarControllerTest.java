@@ -33,13 +33,14 @@ public class CarControllerTest extends AbstractTest {
 			car.setModel(model);
 			//car.setPicture(new Byte[] {1,2,3,4,5});
 			
+			
 			mockMvc.perform(MockMvcRequestBuilders.post("/cars")
 				.contentType(contentTypeFormUrlEncoded)
 				.session(session)
 				.with(csrf())
 				.param("maker", car.getMaker())
-				.param("model", car.getModel()))
-				//.param("date", car.getDate().toString()))
+				.param("model", car.getModel())
+				.param("date", car.getDate().toString()))
 				//.param("picture", car.getPicture().toString()))
 				.andExpect(status().is2xxSuccessful())
 				//.andExpect(redirectedUrl("/cars"))

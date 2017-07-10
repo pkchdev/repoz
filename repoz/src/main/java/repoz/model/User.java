@@ -45,7 +45,6 @@ public class User {
 	
 	@Getter
 	@Setter
-	@Convert(converter=LocalDateTimeConverter.class)
 	@Column(name = "use_creation_date", insertable=false)
 	private LocalDateTime creationDate;
 	
