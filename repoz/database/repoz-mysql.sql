@@ -21,3 +21,7 @@ CREATE TABLE USER (
 	CONSTRAINT FK_USER_ROLE FOREIGN KEY (use_rol_id) REFERENCES ROLE (rol_id)
 );
 
+INSERT INTO USER(use_username, use_password, use_rol_id)
+SELECT 'pkch', 'pkch', 1 FROM DUAL UNION
+SELECT 'test', 'test', 1 FROM DUAL;
+
