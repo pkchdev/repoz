@@ -1,7 +1,5 @@
 package repoz.service.impl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,9 +13,6 @@ import repoz.service.SecurityService;
 @Service
 public class SecurityServiceImpl implements SecurityService {
 
-    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
-
-	
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -37,12 +32,13 @@ public class SecurityServiceImpl implements SecurityService {
 	@Override
 	public void autoLogin(String username, String password) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+				userDetails, password, userDetails.getAuthorities());
 		authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
 		if (usernamePasswordAuthenticationToken.isAuthenticated()) {
 			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-			logger.debug(String.format("Auto login %s successfully!", username));
+			System.out.println(String.format("Auto login %s successfully!", username));
 		}
 	}
 

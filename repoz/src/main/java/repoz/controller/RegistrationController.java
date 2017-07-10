@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import repoz.model.User;
 import repoz.service.SecurityService;
 import repoz.service.UserService;
-import repoz.validator.RegisterValidator;
+import repoz.validator.UserValidator;
 
 @Controller
-public class RegisterController {
+public class RegistrationController {
 
 	@Autowired
 	private UserService userService;
@@ -23,7 +23,7 @@ public class RegisterController {
 	private SecurityService securityService;
 
 	@Autowired
-	private RegisterValidator userValidator;
+	private UserValidator userValidator;
 	
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registration(Model model) {

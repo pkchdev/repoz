@@ -20,8 +20,9 @@
 				<div id="loginbox-panel" class="panel-body">
 					<form:form method="POST" modelAttribute="user" name="form" id="form" class="form-horizontal">
 						
+						
 						<spring:bind path="username">
-							<div class="input-group">
+							<div class="input-group ${status.error ? 'has-error' : ''} ">
 							  	<span class="input-group-addon">
 							  		<i class="glyphicon glyphicon-user"></i>
 							  	</span>
@@ -30,7 +31,7 @@
 						</spring:bind>
 					
 						<spring:bind path="password">
-							<div class="input-group">
+							<div class="input-group ${status.error ? 'has-error' : ''} ">
 							  	<span class="input-group-addon">
 							  		<i class="glyphicon glyphicon-lock"></i>
 							  	</span>
@@ -39,7 +40,7 @@
 						</spring:bind>
 					
 						<spring:bind path="passwordConfirm">
-							<div class="input-group">
+							<div class="input-group ${status.error ? 'has-error' : ''} ">
 							  	<span class="input-group-addon">
 							  		<i class="glyphicon glyphicon-lock"></i>
 							  	</span>

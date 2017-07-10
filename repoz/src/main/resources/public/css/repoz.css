@@ -11,14 +11,18 @@ body {
 	margin-top: 100px;
 }
 
-#loginbox .panel-body {
+#loginbox-panel {
 	padding-bottom: 0px;
 }
 
-#loginbox .alert {
+#loginbox-button {
+	margin-bottom: 15px;
+}
+
+#loginbox-alert{
 	margin-bottom: 0px;
 }
 
 #loginbox .input-group {
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 }

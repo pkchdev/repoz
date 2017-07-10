@@ -17,13 +17,13 @@
 
 				<div id="loginbox-panel" class="panel-body">
 					<form name="form" id="form" class="form-horizontal" action="/login" method="POST">
-						<div class="input-group">
+						<div class="input-group ${not empty error ? 'has-error' : ''}">
 						  	<span class="input-group-addon">
 						  		<i class="glyphicon glyphicon-user"></i>
 						  	</span>
 							<input name="username" type="text" class="form-control" placeholder="Username" />
 						</div>
-						<div class="input-group">
+						<div class="input-group ${not empty error ? 'has-error' : ''}">
 						  	<span class="input-group-addon">
 						  		<i class="glyphicon glyphicon-lock"></i>
 						  	</span>
@@ -35,11 +35,11 @@
 						<a id="loginbox-button" class="btn btn-lg btn-warning btn-block" href="/registration" >Create an account</a>
 						
 						<c:if test = "${error != null}">
-							<div class="alert alert-danger" role="alert">${error}</div>
+							<div id="loginbox-alert" class="alert alert-danger" role="alert">${error}</div>
 						</c:if>
 						
 						<c:if test = "${message != null}">
-							<div class="alert alert-success" role="alert">${message}</div>
+							<div id="loginbox-alert" class="alert alert-success" role="alert">${message}</div>
 						</c:if>
 					</form>
 				</div>
