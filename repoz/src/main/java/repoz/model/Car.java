@@ -1,5 +1,7 @@
 package repoz.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,27 +13,34 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "person")
-public class Person {
+@Table(name="car")
+public class Car {
 
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "car_id")
 	@Getter
 	@Setter
-	private int id;
+	private Long id;
 
+	@Column(name = "car_maker")
 	@Getter
 	@Setter
-	private String name;
-
+	private String maker;
+	
+	@Column(name = "car_model")
 	@Getter
 	@Setter
-	private String country;
-
-	@Override
-	public String toString() {
-		return "Person = " + name + "/" + country;
-	}
-
+	private String model;
+	
+	@Column(name = "car_date")
+	@Getter
+	@Setter
+	private LocalDate date;
+	
+	@Column(name = "car_picture")
+	@Getter
+	@Setter
+	private Byte[] picture;
+	
 }

@@ -38,7 +38,7 @@ public class RegistrationController {
 			return "registration";
 		}
 		
-		userService.save(user);
+		userService.create(user);
 		securityService.autoLogin(user.getUsername(), user.getPasswordConfirm());
 		return "redirect:/index";
 	}

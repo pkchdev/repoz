@@ -21,7 +21,14 @@ CREATE TABLE USER (
 	CONSTRAINT FK_USER_ROLE FOREIGN KEY (use_rol_id) REFERENCES ROLE (rol_id)
 );
 
-INSERT INTO USER(use_username, use_password, use_rol_id)
-SELECT 'pkch', 'pkch', 1 FROM DUAL UNION
-SELECT 'test', 'test', 1 FROM DUAL;
+CREATE TABLE CAR (
+	car_id 			BIGINT NOT NULL AUTO_INCREMENT,
+	car_maker		VARCHAR(50) NOT NULL,
+	car_model		VARCHAR(100) NOT NULL,
+	car_date 		DATE NOT NULL,
+	car_picture		BLOB NOT NULL,
+	PRIMARY KEY (car_id)
+);
+
+
 

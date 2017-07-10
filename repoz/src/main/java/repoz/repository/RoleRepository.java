@@ -9,7 +9,7 @@ import repoz.model.Role;
 @Repository
 public class RoleRepository extends AbstractRepository<Role> {
 
-	public List<Role> findAll() {
+	public List<Role> findAllRole() {
 		return readAll(Role.class);
 	}
 

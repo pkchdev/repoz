@@ -10,6 +10,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
+				<li><a href="/cars">Cars</a></li>
 				<li><a href="/users">Users</a></li>
 			</ul>
 

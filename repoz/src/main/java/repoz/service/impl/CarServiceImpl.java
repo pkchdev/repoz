@@ -1,23 +1,37 @@
 package repoz.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import repoz.model.Person;
-import repoz.repository.PersonRepository;
-import repoz.service.PersonService;
+import repoz.model.Car;
+import repoz.repository.CarRepository;
+import repoz.service.CarService;
 
 @Service
 @Transactional
-public class PersonServiceImpl implements PersonService {
+public class CarServiceImpl implements CarService {
 
 	@Autowired
-	private PersonRepository personPepository;
+	private CarRepository carPepository;
 
+	
 	@Override
-	public void addPerson(Person p) {
-		personPepository.addPerson(p);
+	public void create(Car c) {
+		carPepository.create(c);
+		
+	}
+
+	
+	public List<Car> readAll() {
+		return carPepository.readAll(Car.class);
+	}
+
+	
+	public Car read(Long id) {
+		return carPepository.read(Car.class, id);
 	}
 
 }

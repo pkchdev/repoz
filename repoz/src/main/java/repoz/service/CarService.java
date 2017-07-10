@@ -1,8 +1,12 @@
 package repoz.service;
 
-import repoz.model.Person;
+import java.util.List;
 
-public interface PersonService {
+import repoz.model.Car;
 
-	public void addPerson(Person p);
+public interface CarService {
+
+	public void create(Car c);
+	public List<Car> readAll();
+	public Car read(Long id);
 }
