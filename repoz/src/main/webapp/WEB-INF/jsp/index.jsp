@@ -3,6 +3,7 @@
 		<meta charset="utf-8">
 		<title>Repoz</title> 
 		<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+		
 	</head>
 	<body style="padding-top: 50px; padding-bottom: -20px;">
 		<div id="header">
