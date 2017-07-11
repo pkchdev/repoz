@@ -18,7 +18,7 @@
 					<div class="panel-title text-center">Registration Repoz</div>
 				</div>
 
-				<div id="loginbox-panel" class="panel-body">
+				<div class="panel-body">
 					<form:form method="POST" modelAttribute="user" name="form"
 						id="form" class="form-horizontal">
 

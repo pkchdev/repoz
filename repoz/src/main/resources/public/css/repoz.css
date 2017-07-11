@@ -6,13 +6,22 @@ body {
 	background-size: cover;
 }
 
+.input-group {
+	margin-bottom: 15px;
+}
+
+.panel-body {
+	padding-bottom: 15px;
+}
+
+textarea.form-control {
+	margin-bottom:15px; 
+	resize:none;"
+}
+
 /* Login & registration */
 #loginbox {
 	margin-top: 100px;
-}
-
-#loginbox-panel {
-	padding-bottom: 0px;
 }
 
 #loginbox-button {
@@ -21,8 +30,4 @@ body {
 
 #loginbox-alert{
 	margin-bottom: 0px;
-}
-
-#loginbox .input-group {
-	margin-bottom: 15px;
 }

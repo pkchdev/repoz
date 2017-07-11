@@ -25,13 +25,15 @@ public class CarControllerTest extends AbstractTest {
 		
 		try {
 			Car car = new Car();
-			String maker = UtilsTest.createRandomString(10, true, true, false);
+			String maker = UtilsTest.createRandomString(10, true, true, true);
 			String model = UtilsTest.createRandomString(20, true, true, true);
+			String description = UtilsTest.createRandomString(500, true, true, true);
 			LocalDate date = UtilsTest.createRandomLocalDate();
 			
 			car.setMaker(maker);
 			car.setModel(model);
 			car.setDate(date);
+			car.setDescription(description);
 			//car.setPicture(new Byte[] {1,2,3,4,5});
 			
 			mockMvc.perform(MockMvcRequestBuilders.post("/cars")
@@ -40,6 +42,7 @@ public class CarControllerTest extends AbstractTest {
 				.with(csrf())
 				.param("maker", car.getMaker())
 				.param("model", car.getModel())
+				.param("model", car.getDescription())
 				.param("date", car.getDate().toString()))
 				//.param("picture", car.getPicture().toString()))
 				.andExpect(status().is2xxSuccessful())

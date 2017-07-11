@@ -25,6 +25,7 @@ CREATE TABLE CAR (
 	car_id 			BIGINT NOT NULL AUTO_INCREMENT,
 	car_maker		VARCHAR(50) NOT NULL,
 	car_model		VARCHAR(100) NOT NULL,
+	car_description VARCHAR(500) NOT NULL,
 	car_date 		DATE NOT NULL,
 	car_picture		BLOB NOT NULL,
 	PRIMARY KEY (car_id)

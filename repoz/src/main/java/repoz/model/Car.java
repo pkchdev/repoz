@@ -35,6 +35,11 @@ public class Car {
 	@Setter
 	private String model;
 	
+	@Column(name = "car_description", nullable=false)
+	@Getter
+	@Setter
+	private String description;
+	
 	@Column(name = "car_date", nullable=false)
 	@Getter
 	@Setter

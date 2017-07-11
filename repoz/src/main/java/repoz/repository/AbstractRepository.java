@@ -6,8 +6,10 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 
@@ -36,6 +38,11 @@ public abstract class AbstractRepository<T> {
 	@SuppressWarnings("unchecked")
 	public List<T> readAll(Class<T> entity) {
 		return getSession().createCriteria(entity).list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> readAll(Class<T> entity, Order order) {
+		return getSession().createCriteria(entity).addOrder(order).list();
 	}
 
 	public T read(Class<T> entityType, Serializable id) {

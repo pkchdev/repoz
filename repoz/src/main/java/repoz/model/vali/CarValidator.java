@@ -25,6 +25,7 @@ public class CarValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "maker", "car.maker.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "model", "car.model.empty");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date", "car.date.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "car.description.empty");
 		
 		if(car.getDate() == null) {
 			errors.rejectValue("date", "car.date.empty");
@@ -36,6 +37,10 @@ public class CarValidator implements Validator {
 
 		if (car.getModel().length() > 100) {
 			errors.rejectValue("model", "car.model.size");
+		}
+		
+		if (car.getDescription().length() > 500) {
+			errors.rejectValue("description", "car.description.size");
 		}
 		
 		if(car.getDate().isAfter(LocalDate.now())) {

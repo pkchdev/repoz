@@ -15,7 +15,7 @@
 					<div class="panel-title text-center">Repoz</div>
 				</div>
 
-				<div id="loginbox-panel" class="panel-body">
+				<div class="panel-body">
 					<form name="form" id="form" class="form-horizontal" action="/login" method="POST">
 						<div class="input-group ${not empty error ? 'has-error' : ''}">
 						  	<span class="input-group-addon">

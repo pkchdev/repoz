@@ -33,8 +33,6 @@ public class CarController {
 	}
 	
 	
-	
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public String get(@ModelAttribute Car car, BindingResult bindingResult, Model model, String error) {
 		carValidator.validate(car, bindingResult);
@@ -42,7 +40,7 @@ public class CarController {
 			return "cars";
 		}
 		carService.create(car);
-		return "cars";
+		return "redirect:/cars";
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
