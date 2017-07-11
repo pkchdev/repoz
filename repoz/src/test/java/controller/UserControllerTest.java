@@ -27,7 +27,6 @@ public class UserControllerTest extends AbstractTest {
 					.andDo(print())
 					.andExpect(status().isOk())
 					.andExpect(authenticated())
-					//.andExpect(content().contentType(MediaType.APPLICATION_FORM_URLENCODED))
 					.andReturn();
 			
 		} finally {

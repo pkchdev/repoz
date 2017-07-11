@@ -21,13 +21,13 @@
 						  	<span class="input-group-addon">
 						  		<i class="glyphicon glyphicon-user"></i>
 						  	</span>
-							<input name="username" type="text" class="form-control" placeholder="Username" />
+							<input name="username" type="text" class="form-control" placeholder="Username" required="required"/>
 						</div>
 						<div class="input-group ${not empty error ? 'has-error' : ''}">
 						  	<span class="input-group-addon">
 						  		<i class="glyphicon glyphicon-lock"></i>
 						  	</span>
-							<input name="password" type="password" class="form-control" placeholder="Password" />
+							<input name="password" type="password" class="form-control" placeholder="Password" required="required" />
 						</div>
 
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 

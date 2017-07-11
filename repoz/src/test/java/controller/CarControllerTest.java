@@ -1,7 +1,6 @@
 package controller;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.time.LocalDate;
@@ -26,13 +25,14 @@ public class CarControllerTest extends AbstractTest {
 		
 		try {
 			Car car = new Car();
-			String maker = UtilsTest.createStringWithLength(10, true, true, false);
-			String model = UtilsTest.createStringWithLength(20, true, true, true);
-			car.setDate(LocalDate.now());
+			String maker = UtilsTest.createRandomString(10, true, true, false);
+			String model = UtilsTest.createRandomString(20, true, true, true);
+			LocalDate date = UtilsTest.createRandomLocalDate();
+			
 			car.setMaker(maker);
 			car.setModel(model);
+			car.setDate(date);
 			//car.setPicture(new Byte[] {1,2,3,4,5});
-			
 			
 			mockMvc.perform(MockMvcRequestBuilders.post("/cars")
 				.contentType(contentTypeFormUrlEncoded)
@@ -43,7 +43,6 @@ public class CarControllerTest extends AbstractTest {
 				.param("date", car.getDate().toString()))
 				//.param("picture", car.getPicture().toString()))
 				.andExpect(status().is2xxSuccessful())
-				//.andExpect(redirectedUrl("/cars"))
 				.andReturn();
 		
 		} finally {

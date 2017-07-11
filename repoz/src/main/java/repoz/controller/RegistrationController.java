@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import repoz.model.User;
+import repoz.model.vali.UserValidator;
 import repoz.service.SecurityService;
 import repoz.service.UserService;
-import repoz.validator.UserValidator;
 
 @Controller
 public class RegistrationController {
