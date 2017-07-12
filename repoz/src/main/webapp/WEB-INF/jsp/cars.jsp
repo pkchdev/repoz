@@ -10,6 +10,7 @@
 <link rel='stylesheet' type="text/css"
 	href='/webjars/bootstrap/css/bootstrap.min.css'>
 <link rel='stylesheet' type="text/css" href='/css/repoz.css'>
+
 </head>
 <body style="padding-top: 50px; padding-bottom: -20px;">
 	<div id="header" style="margin-bottom: 50px;">
@@ -34,22 +35,46 @@
 								src="/images/background.png" height="64px" width="64px"
 								alt="..."></a>
 						</div>
+
 						<div class="media-body">
-							<h4 class="media-heading">
+							<h4 class="media-heading">${car.maker}${car.model}</h4>
+							<p style="word-break: break-all;">
+								<strong>${car.date} :</strong>${car.description}</p>
 
-								<form:form action="/cars/delete" modelAttribute="id">
-									<input type="hidden" name="id" value="${car.id}" />
-									<button type="submit" class="btn btn-default"
-										aria-label="Left Align">
-										<span class="glyphicon glyphicon-trash text-danger"
-											aria-hidden="true"></span>
-									</button>
-								</form:form>
+							<button class="btn btn-danger pull-right" aria-label="Left Align"
+								data-toggle="modal" data-target="#modalConfirmDelete${car.id}">
+								<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+								Delete
+							</button>
 
-								${car.maker} ${car.model}
-							</h4>
-							<strong>${car.date} :</strong> ${car.description}
+							<!-- Modal -->
+							<div id="modalConfirmDelete${car.id}" class="modal fade" role="dialog">
+								<div class="modal-dialog modal-sm">
 
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">Are you sure ?</h4>
+										</div>
+										<div class="modal-body">
+											<p>Delete cars ${car.model} ${car.maker} ?</p>
+											<form:form action="/cars/delete" modelAttribute="id">
+												<input type="hidden" name="id" value="${car.id}" />
+
+												<button type="submit" class="btn btn-danger  btn-block"
+													aria-label="Left Align">
+													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+													Yes, delete !
+												</button>
+												
+											</form:form>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
 						</div>
 					</div>
 				</c:forEach>
@@ -122,5 +147,18 @@
 
 	<script src="/webjars/jquery/jquery.min.js"></script>
 	<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+	<script>
+		function popup() {
+			var txt;
+			if (confirm("Press a button!") == true) {
+				txt = "Delete this car ?";
+			} else {
+				txt = "You pressed Cancel!";
+			}
+			document.getElementById("demo").innerHTML = txt;
+		}
+	</script>
+
 </body>
 </html>

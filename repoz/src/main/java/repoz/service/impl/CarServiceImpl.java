@@ -26,7 +26,7 @@ public class CarServiceImpl implements CarService {
 
 	@Override
 	public List<Car> readAll() {
-		return carPepository.readAll(Car.class, Order.asc("date"));
+		return carPepository.readAll(Car.class, Order.asc("maker"));
 	}
 
 	@Override

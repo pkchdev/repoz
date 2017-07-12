@@ -4,7 +4,6 @@
 body {
 	background-image: url('/images/background.png');
 	background-size: cover;
-	
 }
 
 .input-group {
@@ -31,4 +30,9 @@ textarea.form-control {
 
 #loginbox-alert{
 	margin-bottom: 0px;
+}
+
+/* Popup */
+.modal-dialog {
+    top: 25% !important;
 }
