@@ -133,6 +133,10 @@
 							placeholder="Description"></form:textarea>
 					</spring:bind>
 
+					<spring:bind path="picture">
+						<form:input type="file" path="picture" 
+							class="form-control ${empty picture ? 'has-error' : '' } "></form:input>
+					</spring:bind>
 
 					<button class="btn btn-lg btn-primary btn-block" type="submit">Add
 						car</button>
