@@ -31,9 +31,9 @@
 				<c:forEach items="${cars}" var="car">
 					<div class="media">
 						<div class="media-left top-middle">
-							<a href="/cars/${car.id}"> <img class="media-object"
-								src="/images/background.png" height="64px" width="64px"
-								alt="..."></a>
+							<img class="media-object"
+								src="/images/empty-image.gif" height="64px" width="64px"
+								alt="/images/empty-image.gif">
 						</div>
 
 						<div class="media-body">
