@@ -31,9 +31,8 @@
 				<c:forEach items="${cars}" var="car">
 					<div class="media">
 						<div class="media-left top-middle">
-							<img class="media-object"
-								src="/images/empty-image.gif" height="64px" width="64px"
-								alt="/images/empty-image.gif">
+							<img class="media-object" src="/images/empty-image.gif"
+								height="64px" width="64px" alt="/images/empty-image.gif">
 						</div>
 
 						<div class="media-body">
@@ -48,7 +47,8 @@
 							</button>
 
 							<!-- Modal -->
-							<div id="modalConfirmDelete${car.id}" class="modal fade" role="dialog">
+							<div id="modalConfirmDelete${car.id}" class="modal fade"
+								role="dialog">
 								<div class="modal-dialog modal-sm">
 
 									<!-- Modal content-->
@@ -67,7 +67,7 @@
 													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 													Yes, delete !
 												</button>
-												
+
 											</form:form>
 										</div>
 
