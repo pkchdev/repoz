@@ -1,8 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
 
 <html>
 <head>
@@ -20,31 +19,43 @@
 	<div class="col-md-8 col-sm-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="panel-title text-center">All cars (${fn:length(cars)})</div>
+				<div class="panel-title text-center">All cars
+					(${fn:length(cars)})</div>
 			</div>
 
 			<div class="panel-body">
+				<c:if test="${fn:length(cars) == 0}">
+					<h4 class="text-center">No car available</h4>
+				</c:if>
 				<c:forEach items="${cars}" var="car">
 					<div class="media">
 						<div class="media-left top-middle">
-							<a href="#"> <img class="media-object"
+							<a href="/cars/${car.id}"> <img class="media-object"
 								src="/images/background.png" height="64px" width="64px"
 								alt="..."></a>
 						</div>
 						<div class="media-body">
-							<h4 class="media-heading">${car.maker} - ${car.model}</h4>
-							${car.date} : ${car.description}
+							<h4 class="media-heading">
+
+								<form:form action="/cars/delete" modelAttribute="id">
+									<input type="hidden" name="id" value="${car.id}" />
+									<button type="submit" class="btn btn-default"
+										aria-label="Left Align">
+										<span class="glyphicon glyphicon-trash text-danger"
+											aria-hidden="true"></span>
+									</button>
+								</form:form>
+
+								${car.maker} ${car.model}
+							</h4>
+							<strong>${car.date} :</strong> ${car.description}
+
 						</div>
-
-
-
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-
-
 
 	<div class="col-md-4 col-sm-4">
 		<div class="panel panel-default">
@@ -57,7 +68,6 @@
 
 				<form:form method="POST" modelAttribute="car" name="form" id="form"
 					class="form-horizontal">
-
 
 					<spring:bind path="maker">
 						<div class="input-group ${status.error ? 'has-error' : ''} ">
@@ -91,7 +101,6 @@
 						</div>
 					</spring:bind>
 
-
 					<spring:bind path="description">
 						<form:textarea type="text" path="description" required="required"
 							rows="5" maxlength="500"
@@ -99,8 +108,8 @@
 							placeholder="Description"></form:textarea>
 					</spring:bind>
 
-					<button id="loginbox-button"
-						class="btn btn-lg btn-primary btn-block" type="submit">Add
+
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Add
 						car</button>
 
 					<form:errors path="*" element="div" cssClass="alert alert-danger"></form:errors>

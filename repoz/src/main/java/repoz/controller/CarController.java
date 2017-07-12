@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,7 +26,7 @@ public class CarController {
 	private CarValidator carValidator;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String get(Model model) {
+	public String readAll(Model model) {
 		List<Car> cars = carService.readAll();
 		model.addAttribute("cars", cars);
 		model.addAttribute("car", new Car());
@@ -34,9 +35,11 @@ public class CarController {
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String get(@ModelAttribute Car car, BindingResult bindingResult, Model model, String error) {
+	public String create(@ModelAttribute Car car, BindingResult bindingResult, Model model) {
 		carValidator.validate(car, bindingResult);
 		if (bindingResult.hasErrors()) {
+			List<Car> cars = carService.readAll();
+			model.addAttribute("cars", cars);
 			return "cars";
 		}
 		carService.create(car);
@@ -44,9 +47,17 @@ public class CarController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String get(Model model, Long id) {
+	public String read(@PathVariable Long id, Model model) {
 		Car car = carService.read(id);
 		model.addAttribute("car", car);
-		return "/cars";
+		List<Car> cars = carService.readAll();
+		model.addAttribute("cars", cars);
+		return "cars";
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(Model model, Long id) {
+		carService.delete(id);
+		return "redirect:/cars";
 	}
 }

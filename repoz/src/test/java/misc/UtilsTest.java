@@ -7,17 +7,19 @@ import java.util.Random;
 
 public class UtilsTest {
 
-	public static String createRandomString(int length, boolean withMaj, boolean withMin, boolean withNum) {
+	public static String createRandomString(int length, boolean withSpace, boolean withMaj, boolean withMin, boolean withNum) {
 		StringBuilder text = new StringBuilder(length);
+		String space = " ";
 		String min = "abcdefghijklmnopqrstuvwxyz";
 		String maj = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String num = "0123456789";
 		String chars = "";
 		
-		if(withMaj || withMin || withNum ) {
+		if(withMaj || withMin || withNum || withSpace) {
 			if(withMaj) chars += maj; 
 			if(withMin) chars += min;
 			if(withNum) chars += num;
+			if(withSpace) chars += space;
 		
 			for(int i = 0; i < length; i++) {
 				text.append(chars.charAt(new Random().nextInt(chars.length())));

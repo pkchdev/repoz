@@ -16,8 +16,8 @@ public class RegisterControllerTest extends AbstractTest {
 	@Test
 	public void registrationUser() throws Exception {
 		User user = new User();
-		String username = UtilsTest.createRandomString(10, true, true, false);
-		String password = UtilsTest.createRandomString(20, true, true, true);
+		String username = UtilsTest.createRandomString(10, false, true, true, false);
+		String password = UtilsTest.createRandomString(20, false, true, true, true);
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setPasswordConfirm(password);

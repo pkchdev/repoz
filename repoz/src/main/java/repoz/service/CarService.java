@@ -9,4 +9,5 @@ public interface CarService {
 	public void create(Car c);
 	public List<Car> readAll();
 	public Car read(Long id);
+	public void delete(Long id);
 }

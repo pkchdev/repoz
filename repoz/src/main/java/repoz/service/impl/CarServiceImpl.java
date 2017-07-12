@@ -24,14 +24,22 @@ public class CarServiceImpl implements CarService {
 		carPepository.create(c);
 	}
 
-	
+	@Override
 	public List<Car> readAll() {
 		return carPepository.readAll(Car.class, Order.asc("date"));
 	}
 
-	
+	@Override
 	public Car read(Long id) {
 		return carPepository.read(Car.class, id);
+	}
+
+
+	@Override
+	public void delete(Long id) {
+		Car car = new Car();
+		car.setId(id);
+		carPepository.delete(car);
 	}
 
 }

@@ -9,7 +9,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 
@@ -27,8 +26,8 @@ public abstract class AbstractRepository<T> {
 		getSession().persist(entity);
 	}
 
-	public void delete(Serializable id) {
-		getSession().delete(id);
+	public void delete(T entity) {
+		getSession().delete(entity);
 	}
 
 	public void update(T entity) {

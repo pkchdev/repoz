@@ -4,7 +4,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.logout;
 
 import java.nio.charset.Charset;
-import java.util.Random;
 
 import javax.servlet.Filter;
 

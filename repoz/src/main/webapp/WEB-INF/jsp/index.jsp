@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Repoz</title> 
-		<link rel='stylesheet' href='/webjars/bootstrap/css/bootstrap.min.css'>
+		<link rel='stylesheet' type="text/css" href='/webjars/bootstrap/css/bootstrap.min.css'>
+		<link rel='stylesheet' type="text/css" href='/css/repoz.css'>
 		
 	</head>
 	<body style="padding-top: 50px; padding-bottom: -20px;">

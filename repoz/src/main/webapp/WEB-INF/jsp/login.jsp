@@ -21,7 +21,7 @@
 						  	<span class="input-group-addon">
 						  		<i class="glyphicon glyphicon-user"></i>
 						  	</span>
-							<input name="username" type="text" class="form-control" placeholder="Username" required="required"/>
+							<input name="username" type="text" class="form-control" placeholder="Username" required="required" autofocus="autofocus"/>
 						</div>
 						<div class="input-group ${not empty error ? 'has-error' : ''}">
 						  	<span class="input-group-addon">
