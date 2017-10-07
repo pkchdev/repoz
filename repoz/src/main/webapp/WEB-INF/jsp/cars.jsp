@@ -36,9 +36,9 @@
 						</div>
 
 						<div class="media-body">
-							<h4 class="media-heading">${car.maker}${car.model}</h4>
+							<h4 class="media-heading">${car.model} by ${car.maker}</h4>
 							<p style="word-break: break-all;">
-								<strong>${car.date} :</strong>${car.description}</p>
+								<strong>${car.date} : </strong>${car.description}</p>
 
 							<button class="btn btn-danger pull-right" aria-label="Left Align"
 								data-toggle="modal" data-target="#modalConfirmDelete${car.id}">
